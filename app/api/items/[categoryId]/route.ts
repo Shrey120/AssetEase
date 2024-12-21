@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 // import dbConnect from "@/db/config";
 import Item from "@/models/Item";
-export async function GET(
-  req: Request,
-  { params }   }
-) {
+export async function GET(req: Request, { params }) {
   try {
     const categoryId = await params; // Correctly access categoryId
 
