@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import Item from "@/models/Item";
 export async function GET(
   req: Request,
-  { params }: { params: { categoryId: string } }
+  { params }   }
 ) {
   try {
     const categoryId = await params; // Correctly access categoryId
