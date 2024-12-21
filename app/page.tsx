@@ -28,12 +28,13 @@ const HomePage = () => {
     (sum, category) => sum + category.totalAmount,
     0
   );
+
   useEffect(() => {
     fetchCategories();
   }, []);
 
   return (
-    <div className='h-full mx-auto p-4 bg-slate-900'>
+    <div className='min-h-screen mx-auto p-4 bg-slate-900'>
       {addCategoryPage && (
         <AddCategoryPage
           setProp={setAddCategoryPage}
