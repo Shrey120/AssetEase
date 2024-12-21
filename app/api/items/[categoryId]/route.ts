@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 // import dbConnect from "@/db/config";
 import Item from "@/models/Item";
-export async function GET(req: Request, { params }) {
+export async function GET(
+  req: Request,
+  { params }: { params: { categoryId: string } }
+) {
   try {
-    const categoryId = await params; // Correctly access categoryId
-
+    const categoryId = params.categoryId; // Correctly access categoryId
     // Fetch all categories from the database
     const items = await Item.find({
-      categoryId: categoryId.categoryId,
+      categoryId: categoryId,
     });
 
     // Send a success response with the items
