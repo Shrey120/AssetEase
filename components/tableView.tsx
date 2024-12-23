@@ -54,7 +54,7 @@ export default function TableView({ items }: { items: Item[] }) {
                   {item.name}
                 </td>
                 <td className='lato text-lg border border-gray-700 px-4 py-2 text-center'>
-                  ${item.price}
+                  ₹ {item.price}
                 </td>
                 <td className='lato text-lg border border-gray-700 px-4 py-2 text-center'>
                   <a href={item.purchaseUrl}>
