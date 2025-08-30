@@ -35,6 +35,9 @@ export default function TableView({ items }: { items: Item[] }) {
             <th className='julius  font-bold text-2xl border border-gray-700 px-4 py-2 text-center'>
               Purchase URL
             </th>
+            <th className='julius font-bold text-2xl border border-gray-700 px-4 py-2 text-center'>
+              Status
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +64,29 @@ export default function TableView({ items }: { items: Item[] }) {
                     {item.purchaseUrl.slice(0, 20)}...
                   </a>
                 </td>
+                <td className='lato text-lg border border-gray-700 px-4 py-2 text-center'>
+                  <button
+                    className={`px-3 py-1 rounded-lg ${item.status === "bought" ? "bg-green-600" : "bg-yellow-600"
+                      }`}
+                    onClick={async () => {
+                      const newStatus = item.status === "bought" ? "to buy" : "bought";
+                      const res = await fetch(`/api/items/${item._id}`, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ status: newStatus }),
+                      });
+                      if (res.ok) {
+                        const updated = itemsList.map((i) =>
+                          i._id === item._id ? { ...i, status: newStatus } : i
+                        );
+                        setItemsList(updated);
+                      }
+                    }}
+                  >
+                    {item.status}
+                  </button>
+                </td>
+
               </tr>
             ))}
         </tbody>

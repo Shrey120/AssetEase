@@ -13,4 +13,5 @@ export interface Item {
   price: number;
   date: string;
   purchaseUrl: string;
+  status: string;
 }

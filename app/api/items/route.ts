@@ -15,12 +15,14 @@ export async function POST(req: NextRequest) {
       price,
       purchaseUrl,
       categoryId,
+      status,
     }: {
       name: string;
       imageUrl: string;
       price: number;
       purchaseUrl: string;
       categoryId: string;
+      status: "bought" | "to buy";
     } = await req.json();
 
     // Create a new Item document
@@ -31,6 +33,7 @@ export async function POST(req: NextRequest) {
       purchaseUrl: purchaseUrl,
       price: price,
       name: name,
+      status: status,
     });
 
     // Save the new Item to the database

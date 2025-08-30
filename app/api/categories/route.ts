@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     const newCategory = new Category({
       name,
       imageUrl,
-      createdAt: new Date(),
+      // createdAt: new Date(),
     });
 
     // Save the new category to the database
