@@ -64,12 +64,12 @@ export default function TableView({ items }: { items: Item[] }) {
                     {item.purchaseUrl.slice(0, 20)}...
                   </a>
                 </td>
-                <td className='lato text-lg border border-gray-700 px-4 py-2 text-center'>
-                  <button
-                    className={`px-3 py-1 rounded-lg ${item.status === "bought" ? "bg-green-600" : "bg-yellow-600"
-                      }`}
-                    onClick={async () => {
-                      const newStatus = item.status === "bought" ? "to buy" : "bought";
+                <td className="lato text-lg border border-gray-700 px-4 py-2 text-center">
+                  <select
+                    className="px-3 py-1 rounded-lg text-black"
+                    value={item.status}
+                    onChange={async (e) => {
+                      const newStatus = e.target.value as "to buy" | "bought";
                       const res = await fetch(`/api/items/${item._id}`, {
                         method: "PUT",
                         headers: { "Content-Type": "application/json" },
@@ -83,8 +83,9 @@ export default function TableView({ items }: { items: Item[] }) {
                       }
                     }}
                   >
-                    {item.status}
-                  </button>
+                    <option value="to buy">To Buy</option>
+                    <option value="bought">Bought</option>
+                  </select>
                 </td>
 
               </tr>
